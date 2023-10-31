@@ -1753,9 +1753,9 @@ public:
 		if (IID_IUnknown == riid) {
 			AddRef();
 			*ppvInterface = (IUnknown *)this;
-		} else if (__uuidof(IMMNotificationClient) == riid) {
-			AddRef();
-			*ppvInterface = (IMMNotificationClient *)this;
+		//} else if (__uuidof(IMMNotificationClient) == riid) {
+		//	AddRef();
+		//	*ppvInterface = (IMMNotificationClient *)this;
 		} else {
 			*ppvInterface = nullptr;
 			return E_NOINTERFACE;

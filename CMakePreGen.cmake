@@ -1,0 +1,1 @@
+execute_process(COMMAND  python CMakePreGen.py ${CMAKE_BINARY_DIR} WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
