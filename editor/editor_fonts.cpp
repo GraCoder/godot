@@ -30,7 +30,7 @@
 
 #include "editor_fonts.h"
 
-#include "builtin_fonts.gen.h"
+#include "editor/builtin_fonts.gen.h"
 #include "core/io/dir_access.h"
 #include "editor/editor_scale.h"
 #include "editor/editor_settings.h"
