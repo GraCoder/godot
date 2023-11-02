@@ -4,7 +4,7 @@ set(target_name gd_drivers)
 
 project(${target_name})
 
-option(WITH_XAUDIO2 "")
+option(with_xaudio2 "" OFF)
 
 set(src_dir ${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -17,7 +17,7 @@ set(src_dirs
 	${src_dir}/winmidi
 )
 
-if(WITH_GLES3)
+if(with_gles3)
 	list(APPEND src_dir
 		${src_dir}/gles3
 		${src_dir}/gles3/effects
@@ -38,7 +38,7 @@ endforeach()
 
 add_library(${target_name} ${target_src} )
 
-if(WITH_GLES3)
+if(with_gles3)
 	target_compile_definitions(${target_name} PRIVATE GLES_OVER_GL)
 endif()
 
