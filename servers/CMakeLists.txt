@@ -32,9 +32,9 @@ set(src_dirs
 	${src_dir}/rendering/storage
 )
 
-option(WITH_MOBILE_RENDER "" true)
+option(build_mobile_render "" true)
 
-if(WITH_MOBILE_RENDER)
+if(build_mobile_render)
 	list(APPEND src_dirs
 		${src_dir}/rendering/renderer_rd/forward_mobile
 		)
