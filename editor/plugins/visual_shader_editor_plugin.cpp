@@ -4080,6 +4080,12 @@ void VisualShaderEditor::_show_members_dialog(bool at_mouse_pos, VisualShaderNod
 		saved_node_pos_dirty = false;
 		members_dialog->set_position(graph->get_screen_position() + Point2(5 * EDSCALE, 65 * EDSCALE));
 	}
+
+	if (members_dialog->is_visible()) {
+		members_dialog->grab_focus();
+		return;
+	}
+
 	members_dialog->popup();
 
 	// Keep dialog within window bounds.
@@ -4820,16 +4826,14 @@ void VisualShaderEditor::_varying_create() {
 	add_varying_dialog->hide();
 }
 
-void VisualShaderEditor::_varying_name_changed(const String &p_text) {
-	String name = p_text;
-
-	if (!name.is_valid_identifier()) {
+void VisualShaderEditor::_varying_name_changed(const String &p_name) {
+	if (!p_name.is_valid_identifier()) {
 		varying_error_label->show();
 		varying_error_label->set_text(TTR("Invalid name for varying."));
 		add_varying_dialog->get_ok_button()->set_disabled(true);
 		return;
 	}
-	if (visual_shader->has_varying(name)) {
+	if (visual_shader->has_varying(p_name)) {
 		varying_error_label->show();
 		varying_error_label->set_text(TTR("Varying with that name is already exist."));
 		add_varying_dialog->get_ok_button()->set_disabled(true);
@@ -5384,6 +5388,7 @@ VisualShaderEditor::VisualShaderEditor() {
 	preview_window = memnew(Window);
 	preview_window->set_title(TTR("Generated Shader Code"));
 	preview_window->set_visible(preview_showed);
+	preview_window->set_exclusive(true);
 	preview_window->connect("close_requested", callable_mp(this, &VisualShaderEditor::_preview_close_requested));
 	preview_window->connect("size_changed", callable_mp(this, &VisualShaderEditor::_preview_size_changed));
 	add_child(preview_window);
@@ -5485,7 +5490,7 @@ VisualShaderEditor::VisualShaderEditor() {
 
 	members_dialog = memnew(ConfirmationDialog);
 	members_dialog->set_title(TTR("Create Shader Node"));
-	members_dialog->set_exclusive(false);
+	members_dialog->set_exclusive(true);
 	members_dialog->add_child(members_vb);
 	members_dialog->set_ok_button_text(TTR("Create"));
 	members_dialog->get_ok_button()->connect("pressed", callable_mp(this, &VisualShaderEditor::_member_create));
@@ -5497,7 +5502,7 @@ VisualShaderEditor::VisualShaderEditor() {
 	{
 		add_varying_dialog = memnew(ConfirmationDialog);
 		add_varying_dialog->set_title(TTR("Create Shader Varying"));
-		add_varying_dialog->set_exclusive(false);
+		add_varying_dialog->set_exclusive(true);
 		add_varying_dialog->set_ok_button_text(TTR("Create"));
 		add_varying_dialog->get_ok_button()->connect("pressed", callable_mp(this, &VisualShaderEditor::_varying_create));
 		add_varying_dialog->get_ok_button()->set_disabled(true);
@@ -5543,7 +5548,7 @@ VisualShaderEditor::VisualShaderEditor() {
 	{
 		remove_varying_dialog = memnew(ConfirmationDialog);
 		remove_varying_dialog->set_title(TTR("Delete Shader Varying"));
-		remove_varying_dialog->set_exclusive(false);
+		remove_varying_dialog->set_exclusive(true);
 		remove_varying_dialog->set_ok_button_text(TTR("Delete"));
 		remove_varying_dialog->get_ok_button()->connect("pressed", callable_mp(this, &VisualShaderEditor::_varying_deleted));
 		add_child(remove_varying_dialog);

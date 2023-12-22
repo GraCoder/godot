@@ -50,15 +50,17 @@
 #import <dlfcn.h>
 #include <sys/sysctl.h>
 
-#if defined(VULKAN_ENABLED)
+#if defined(RD_ENABLED)
 #include "servers/rendering/renderer_rd/renderer_compositor_rd.h"
-
 #import <QuartzCore/CAMetalLayer.h>
+
+#if defined(VULKAN_ENABLED)
 #ifdef USE_VOLK
 #include <volk.h>
 #else
 #include <vulkan/vulkan.h>
 #endif
+#endif // VULKAN_ENABLED
 #endif
 
 // Initialization order between compilation units is not guaranteed,
@@ -72,16 +74,15 @@ HashMap<String, void *> OS_IOS::dynamic_symbol_lookup_table;
 
 void add_ios_init_callback(init_callback cb) {
 	if (ios_init_callbacks_count == ios_init_callbacks_capacity) {
-		void *new_ptr = realloc(ios_init_callbacks, sizeof(cb) * 32);
+		void *new_ptr = realloc(ios_init_callbacks, sizeof(cb) * (ios_init_callbacks_capacity + 32));
 		if (new_ptr) {
 			ios_init_callbacks = (init_callback *)(new_ptr);
 			ios_init_callbacks_capacity += 32;
+		} else {
+			ERR_FAIL_MSG("Unable to allocate memory for extension callbacks.");
 		}
 	}
-	if (ios_init_callbacks_capacity > ios_init_callbacks_count) {
-		ios_init_callbacks[ios_init_callbacks_count] = cb;
-		++ios_init_callbacks_count;
-	}
+	ios_init_callbacks[ios_init_callbacks_count++] = cb;
 }
 
 void register_dynamic_symbol(char *name, void *address) {

@@ -70,6 +70,7 @@ typedef Vector<int32_t> PackedInt32Array;
 typedef Vector<int64_t> PackedInt64Array;
 typedef Vector<float> PackedFloat32Array;
 typedef Vector<double> PackedFloat64Array;
+typedef Vector<real_t> PackedRealArray;
 typedef Vector<String> PackedStringArray;
 typedef Vector<Vector2> PackedVector2Array;
 typedef Vector<Vector3> PackedVector3Array;
@@ -337,6 +338,9 @@ public:
 	bool is_ref_counted() const;
 	_FORCE_INLINE_ bool is_num() const {
 		return type == INT || type == FLOAT;
+	}
+	_FORCE_INLINE_ bool is_string() const {
+		return type == STRING || type == STRING_NAME;
 	}
 	_FORCE_INLINE_ bool is_array() const {
 		return type >= ARRAY;

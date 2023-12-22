@@ -306,10 +306,14 @@ bool AnimationTrackKeyEdit::_set(const StringName &p_name, const Variant &p_valu
 
 				setting = true;
 				undo_redo->create_action(TTR("Animation Change Keyframe Value"), UndoRedo::MERGE_ENDS);
-				int prev = animation->bezier_track_get_key_handle_mode(track, key);
-				undo_redo->add_do_method(this, "_bezier_track_set_key_handle_mode", animation.ptr(), track, key, value);
-				undo_redo->add_undo_method(this, "_bezier_track_set_key_handle_mode", animation.ptr(), track, key, prev);
+				int prev_mode = animation->bezier_track_get_key_handle_mode(track, key);
+				Vector2 prev_in_handle = animation->bezier_track_get_key_in_handle(track, key);
+				Vector2 prev_out_handle = animation->bezier_track_get_key_out_handle(track, key);
+				undo_redo->add_do_method(editor, "_bezier_track_set_key_handle_mode", animation.ptr(), track, key, value);
 				undo_redo->add_do_method(this, "_update_obj", animation);
+				undo_redo->add_undo_method(editor, "_bezier_track_set_key_handle_mode", animation.ptr(), track, key, prev_mode);
+				undo_redo->add_undo_method(animation.ptr(), "bezier_track_set_key_in_handle", track, key, prev_in_handle);
+				undo_redo->add_undo_method(animation.ptr(), "bezier_track_set_key_out_handle", track, key, prev_out_handle);
 				undo_redo->add_undo_method(this, "_update_obj", animation);
 				undo_redo->commit_action();
 
@@ -857,8 +861,8 @@ bool AnimationMultiTrackKeyEdit::_set(const StringName &p_name, const Variant &p
 							undo_redo->create_action(TTR("Animation Multi Change Keyframe Value"), UndoRedo::MERGE_ENDS);
 						}
 						Vector2 prev = animation->bezier_track_get_key_in_handle(track, key);
-						undo_redo->add_do_method(this, "_bezier_track_set_key_in_handle", track, key, value);
-						undo_redo->add_undo_method(this, "_bezier_track_set_key_in_handle", track, key, prev);
+						undo_redo->add_do_method(animation.ptr(), "bezier_track_set_key_in_handle", track, key, value);
+						undo_redo->add_undo_method(animation.ptr(), "bezier_track_set_key_in_handle", track, key, prev);
 						update_obj = true;
 					} else if (name == "out_handle") {
 						const Variant &value = p_value;
@@ -878,9 +882,13 @@ bool AnimationMultiTrackKeyEdit::_set(const StringName &p_name, const Variant &p
 							setting = true;
 							undo_redo->create_action(TTR("Animation Multi Change Keyframe Value"), UndoRedo::MERGE_ENDS);
 						}
-						int prev = animation->bezier_track_get_key_handle_mode(track, key);
-						undo_redo->add_do_method(this, "_bezier_track_set_key_handle_mode", animation.ptr(), track, key, value);
-						undo_redo->add_undo_method(this, "_bezier_track_set_key_handle_mode", animation.ptr(), track, key, prev);
+						int prev_mode = animation->bezier_track_get_key_handle_mode(track, key);
+						Vector2 prev_in_handle = animation->bezier_track_get_key_in_handle(track, key);
+						Vector2 prev_out_handle = animation->bezier_track_get_key_out_handle(track, key);
+						undo_redo->add_do_method(editor, "_bezier_track_set_key_handle_mode", animation.ptr(), track, key, value);
+						undo_redo->add_undo_method(editor, "_bezier_track_set_key_handle_mode", animation.ptr(), track, key, prev_mode);
+						undo_redo->add_undo_method(animation.ptr(), "bezier_track_set_key_in_handle", track, key, prev_in_handle);
+						undo_redo->add_undo_method(animation.ptr(), "bezier_track_set_key_out_handle", track, key, prev_out_handle);
 						update_obj = true;
 					}
 				} break;
@@ -1683,7 +1691,7 @@ void AnimationTimelineEdit::gui_input(const Ref<InputEvent> &p_event) {
 			int x = mb->get_position().x - get_name_limit();
 
 			float ofs = x / get_zoom_scale() + get_value();
-			emit_signal(SNAME("timeline_changed"), ofs, false, mb->is_alt_pressed());
+			emit_signal(SNAME("timeline_changed"), ofs, mb->is_alt_pressed());
 			dragging_timeline = true;
 		}
 	}
@@ -1705,7 +1713,7 @@ void AnimationTimelineEdit::gui_input(const Ref<InputEvent> &p_event) {
 		if (dragging_timeline) {
 			int x = mm->get_position().x - get_name_limit();
 			float ofs = x / get_zoom_scale() + get_value();
-			emit_signal(SNAME("timeline_changed"), ofs, false, mm->is_alt_pressed());
+			emit_signal(SNAME("timeline_changed"), ofs, mm->is_alt_pressed());
 		}
 	}
 }
@@ -1748,7 +1756,7 @@ void AnimationTimelineEdit::_track_added(int p_track) {
 void AnimationTimelineEdit::_bind_methods() {
 	ADD_SIGNAL(MethodInfo("zoom_changed"));
 	ADD_SIGNAL(MethodInfo("name_limit_changed"));
-	ADD_SIGNAL(MethodInfo("timeline_changed", PropertyInfo(Variant::FLOAT, "position"), PropertyInfo(Variant::BOOL, "drag"), PropertyInfo(Variant::BOOL, "timeline_only")));
+	ADD_SIGNAL(MethodInfo("timeline_changed", PropertyInfo(Variant::FLOAT, "position"), PropertyInfo(Variant::BOOL, "timeline_only")));
 	ADD_SIGNAL(MethodInfo("track_added", PropertyInfo(Variant::INT, "track")));
 	ADD_SIGNAL(MethodInfo("length_changed", PropertyInfo(Variant::FLOAT, "size")));
 
@@ -3148,7 +3156,7 @@ void AnimationTrackEdit::append_to_selection(const Rect2 &p_box, bool p_deselect
 }
 
 void AnimationTrackEdit::_bind_methods() {
-	ADD_SIGNAL(MethodInfo("timeline_changed", PropertyInfo(Variant::FLOAT, "position"), PropertyInfo(Variant::BOOL, "drag"), PropertyInfo(Variant::BOOL, "timeline_only")));
+	ADD_SIGNAL(MethodInfo("timeline_changed", PropertyInfo(Variant::FLOAT, "position"), PropertyInfo(Variant::BOOL, "timeline_only")));
 	ADD_SIGNAL(MethodInfo("remove_request", PropertyInfo(Variant::INT, "track")));
 	ADD_SIGNAL(MethodInfo("dropped", PropertyInfo(Variant::INT, "from_track"), PropertyInfo(Variant::INT, "to_track")));
 	ADD_SIGNAL(MethodInfo("insert_key", PropertyInfo(Variant::FLOAT, "offset")));
@@ -3468,8 +3476,8 @@ void AnimationTrackEditor::_name_limit_changed() {
 	_redraw_tracks();
 }
 
-void AnimationTrackEditor::_timeline_changed(float p_new_pos, bool p_drag, bool p_timeline_only) {
-	emit_signal(SNAME("timeline_changed"), p_new_pos, p_drag, p_timeline_only);
+void AnimationTrackEditor::_timeline_changed(float p_new_pos, bool p_timeline_only) {
+	emit_signal(SNAME("timeline_changed"), p_new_pos, p_timeline_only);
 }
 
 void AnimationTrackEditor::_track_remove_request(int p_track) {
@@ -5175,6 +5183,7 @@ void AnimationTrackEditor::_update_key_edit() {
 		key_edit->animation_read_only = read_only;
 		key_edit->track = selection.front()->key().track;
 		key_edit->use_fps = timeline->is_using_fps();
+		key_edit->editor = this;
 
 		int key_id = selection.front()->key().key;
 		if (key_id >= animation->track_get_key_count(key_edit->track)) {
@@ -5194,6 +5203,7 @@ void AnimationTrackEditor::_update_key_edit() {
 		multi_key_edit = memnew(AnimationMultiTrackKeyEdit);
 		multi_key_edit->animation = animation;
 		multi_key_edit->animation_read_only = read_only;
+		multi_key_edit->editor = this;
 
 		RBMap<int, List<float>> key_ofs_map;
 		RBMap<int, NodePath> base_map;
@@ -5575,7 +5585,7 @@ void AnimationTrackEditor::goto_prev_step(bool p_from_mouse_event) {
 		pos = 0;
 	}
 	set_anim_pos(pos);
-	emit_signal(SNAME("timeline_changed"), pos, true, false);
+	emit_signal(SNAME("timeline_changed"), pos, false);
 }
 
 void AnimationTrackEditor::goto_next_step(bool p_from_mouse_event, bool p_timeline_only) {
@@ -5602,7 +5612,7 @@ void AnimationTrackEditor::goto_next_step(bool p_from_mouse_event, bool p_timeli
 	}
 	set_anim_pos(pos);
 
-	emit_signal(SNAME("timeline_changed"), pos, true, p_timeline_only);
+	emit_signal(SNAME("timeline_changed"), pos, p_timeline_only);
 }
 
 void AnimationTrackEditor::_edit_menu_pressed(int p_option) {
@@ -6374,7 +6384,7 @@ void AnimationTrackEditor::_bind_methods() {
 
 	ClassDB::bind_method(D_METHOD("_bezier_track_set_key_handle_mode", "animation", "track_idx", "key_idx", "key_handle_mode", "key_handle_set_mode"), &AnimationTrackEditor::_bezier_track_set_key_handle_mode, DEFVAL(Animation::HANDLE_SET_MODE_NONE));
 
-	ADD_SIGNAL(MethodInfo("timeline_changed", PropertyInfo(Variant::FLOAT, "position"), PropertyInfo(Variant::BOOL, "drag"), PropertyInfo(Variant::BOOL, "timeline_only")));
+	ADD_SIGNAL(MethodInfo("timeline_changed", PropertyInfo(Variant::FLOAT, "position"), PropertyInfo(Variant::BOOL, "timeline_only")));
 	ADD_SIGNAL(MethodInfo("keying_changed"));
 	ADD_SIGNAL(MethodInfo("animation_len_changed", PropertyInfo(Variant::FLOAT, "len")));
 	ADD_SIGNAL(MethodInfo("animation_step_changed", PropertyInfo(Variant::FLOAT, "step")));

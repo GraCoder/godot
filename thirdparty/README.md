@@ -120,6 +120,40 @@ have been removed as they caused massive quality regressions. Apply the patches
 in the `patches/` folder when syncing on newer upstream commits.
 
 
+## d3d12ma
+
+- Upstream: https://github.com/GPUOpen-LibrariesAndSDKs/D3D12MemoryAllocator
+- Version: 2.1.0-development (4d16e802e0b9451c9d3c27cd308928c13b73acd6, 2023)
+- License: MIT
+
+Files extracted from upstream source:
+
+- `src/D3D12MemAlloc.cpp`, `src/D3D12MemAlloc.natvis`
+- `include/D3D12MemAlloc.h`
+- `LICENSE.txt`, `NOTICES.txt`
+
+Important: Some files have Godot-made changes for use with MinGW.
+They are marked with `/* GODOT start */` and `/* GODOT end */`
+comments.
+
+
+## directx_headers
+
+- Upstream: https://github.com/microsoft/DirectX-Headers
+- Version: 1.611.1 (48f23952bc08a6dce0727339c07cedbc4797356c, 2023)
+- License: MIT
+
+Files extracted from upstream source:
+
+- `include/directx/*.h`
+- `include/dxguids/*.h`
+- `LICENSE`
+
+Important: Some files have Godot-made changes for use with MinGW.
+They are marked with `/* GODOT start */` and `/* GODOT end */`
+comments.
+
+
 ## doctest
 
 - Upstream: https://github.com/onqtam/doctest
@@ -191,6 +225,8 @@ Files extracted from upstream source:
   ```
 - `AUTHORS.txt` and `LICENSE.txt`
 
+Two files (`ProcessRgtc.{cpp,hpp}`) have been added to provide RGTC compression implementation,
+based on library's `ProcessDxtc.{cpp,hpp}`.
 
 ## fonts
 
@@ -480,7 +516,7 @@ in the MSVC debugger.
 ## mbedtls
 
 - Upstream: https://github.com/Mbed-TLS/mbedtls
-- Version: 2.28.4 (aeb97a18913a86f051afab11b2c92c6be0c2eb83, 2023)
+- Version: 2.28.5 (47e8cc9db2e469d902b0e3093ae9e482c3d87188, 2023)
 - License: Apache 2.0
 
 File extracted from upstream release tarball:
@@ -490,8 +526,8 @@ File extracted from upstream release tarball:
 - All `.c` and `.h` from `library/` to `thirdparty/mbedtls/library/` except
   those starting with `psa_*`
 - The `LICENSE` file
-- Applied the patch in `patches/windows-arm64-hardclock.diff`
-  Applied the patch in `aesni-no-arm-intrinsics.patch` to fix MSVC ARM build
+- Applied the patch `windows-arm64-hardclock.diff` to fix Windows ARM64 build
+  Applied the patch `windows-entropy-bcrypt.diff` to fix Windows Store support
 - Added 2 files `godot_core_mbedtls_platform.c` and `godot_core_mbedtls_config.h`
   providing configuration for light bundling with core
 - Added the file `godot_module_mbedtls_config.h` to customize the build
@@ -501,7 +537,7 @@ File extracted from upstream release tarball:
 ## meshoptimizer
 
 - Upstream: https://github.com/zeux/meshoptimizer
-- Version: git (4a287848fd664ae1c3fc8e5e008560534ceeb526, 2022)
+- Version: git (c21d3be6ddf627f8ca852ba4b6db9903b0557858, 2023)
 - License: MIT
 
 Files extracted from upstream repository:
@@ -509,10 +545,27 @@ Files extracted from upstream repository:
 - All files in `src/`
 - `LICENSE.md`
 
-An [experimental upstream feature](https://github.com/zeux/meshoptimizer/tree/simplify-attr),
-has been backported. On top of that, it was modified to report only distance
-error metrics instead of a combination of distance and attribute errors. Patches
-for both changes can be found in the `patches` directory.
+A patch is included to modify the simplifier to report only distance error
+metrics instead of a combination of distance and attribute errors.
+
+
+## mingw-std-threads
+
+- Upstream: https://github.com/meganz/mingw-std-threads
+- Version: git (c931bac289dd431f1dd30fc4a5d1a7be36668073, 2023)
+- License: BSD-2-clause
+
+Files extracted from upstream repository:
+
+- `LICENSE`
+- `mingw.condition_variable.h`
+- `mingw.invoke.h`
+- `mingw.mutex.h`
+- `mingw.shared_mutex.h`
+- `mingw.thread.h`
+
+Once copied, apply `godot.patch` (needed because Godot is built without exceptions
+and to avoid std:: replacements leak in Clang builds).
 
 
 ## minimp3
@@ -565,6 +618,8 @@ Important: Some files have Godot-made changes for use in core/io.
 They are marked with `/* GODOT start */` and `/* GODOT end */`
 comments and a patch is provided in the `patches` folder.
 
+Another patch is included to fix CVE-2023-45853.
+
 
 ## misc
 
@@ -610,7 +665,7 @@ Collection of single-file libraries used in Godot components.
   * License: MIT
 - `r128.{c,h}`
   * Upstream: https://github.com/fahickman/r128
-  * Version: 1.4.4 (cf2e88fc3e7d7dfe99189686f914874cd0bda15e, 2020)
+  * Version: git (6fc177671c47640d5bb69af10cf4ee91050015a1, 2023)
   * License: Public Domain or Unlicense
 - `smaz.{c,h}`
   * Upstream: https://github.com/antirez/smaz
