@@ -46,12 +46,8 @@ endfunction()
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-
-set(third_dir CACHE PATH FORCE)
-
 #include(CMakePreGen.cmake)
-
-find_package(Vulkan COMPONENTS SPIRV-Tools REQUIRED)
+#find_package(Vulkan COMPONENTS SPIRV-Tools REQUIRED)
 
 if(MSVC)
 	add_definitions(-DWINDOWS_ENABLED "/wd4244")
@@ -92,14 +88,19 @@ if(MSVC)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4305 /wd4267")
 endif()
 
-#include_directories(${CMAKE_BINARY_DIR})
 include_directories(${CMAKE_SOURCE_DIR})
 include_directories(${CMAKE_SOURCE_DIR}/gen)
 include_directories(${CMAKE_SOURCE_DIR}/platform/${CMAKE_HOST_SYSTEM_NAME})
 
-set(third_inc ${third_dir}/include)
-set(third_lib ${third_dir}/lib)
+set(third_dir CACHE PATH FORCE)
+if(EXISTS third_dir)
+	set(third_inc ${third_dir}/include)
+	set(third_lib ${third_dir}/lib)
+endif()
+
 set(thirdin_dir ${CMAKE_SOURCE_DIR}/thirdparty)
+
+set(gen_dir ${CMAKE_SOURCE_DIR}/gen)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 

@@ -4,6 +4,7 @@ All such functions are invoked in a subprocess on Windows to prevent build flaki
 
 """
 import os.path
+import shutil
 from typing import Optional, Iterable
 
 from platform_methods import subprocess_main
@@ -166,6 +167,14 @@ public:
 
     with open(out_file, "w") as fd:
         fd.write(shader_template)
+    
+    dir = os.path.dirname(__file__)
+    relpath = os.path.relpath(out_file, dir)
+    gen_file = os.path.join(dir, "gen", relpath)
+    print('------------------------\n')
+    print(gen_file)
+    shutil.copyfile(out_file, gen_file)
+    print('------------------------\n')
 
 
 def build_rd_headers(target, source, env):

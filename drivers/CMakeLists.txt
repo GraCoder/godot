@@ -42,16 +42,14 @@ if(with_gles3)
 	target_compile_definitions(${target_name} PRIVATE GLES_OVER_GL)
 endif()
 
-target_include_directories(${target_name} PRIVATE ${CMAKE_SOURCE_DIR})
-target_include_directories(${target_name} PRIVATE ${Vulkan_INCLUDE_DIR})
-target_include_directories(${target_name} PRIVATE ${Vulkan_INCLUDE_DIR}/vma)
-target_include_directories(${target_name} PRIVATE ${Vulkan_INCLUDE_DIR}/vulkan)
+if(with_volk)
+	target_compile_definitions(${target_name} PRIVATE USE_VOLK)
+endif()
 
 target_include_directories(${target_name} PRIVATE ${thirdin_dir}/glad)
 target_include_directories(${target_name} PRIVATE ${thirdin_dir}/libpng)
+target_include_directories(${target_name} PRIVATE ${thirdin_dir}/vulkan)
 
-target_link_libraries(${target_name} PRIVATE freetype)
-
-target_link_libraries(${target_name} PRIVATE ${Vulkan_LIBRARY})
+target_link_libraries(${target_name} PRIVATE freetype vulkan)
 
 target_link_libraries(${target_name} PRIVATE Shlwapi.lib Ws2_32.lib Iphlpapi.lib opengl32.lib ntdll.lib)

@@ -38,6 +38,8 @@ target_include_directories(${target_name} PRIVATE ${target_dir}/src/renderer)
 target_include_directories(${target_name} PRIVATE ${target_dir}/src/renderer/sw_engine)
 target_include_directories(${target_name} PRIVATE ${target_dir}/src/loaders/external_png)
 
+target_include_directories(${target_name} PRIVATE ${thirdin_dir}/libpng)
+
 target_link_libraries(${target_name} PRIVATE libpng)
 
 target_include_directories(${target_name} PRIVATE ${third_inc})
