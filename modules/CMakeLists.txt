@@ -2,11 +2,10 @@ cmake_minimum_required(VERSION 3.24)
 
 set(target_name gd_modules)
 
-project(${target_name})
-
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 set(target_dir ${CMAKE_CURRENT_SOURCE_DIR})
+set(target_gen_dir ${gen_dir}/modules)
 
 add_subdirectory(gltf)
 add_subdirectory(navigation)
@@ -29,23 +28,23 @@ set(src_dirs
 
 	${target_dir}/csg
 
-	${target_dir}/websocket
+	#${target_dir}/websocket
 )
 
-set(target_src)
 foreach(src_dir ${src_dirs})
-	add_source_dir(${src_dir} *.cpp *.h)
-	list(APPEND target_src ${ret_${src_dir}})
+	file(GLOB_RECURSE source ${src_dir}/*.cpp)
+	list(APPEND target_source ${source})
 endforeach()
+source_group(TREE ${target_dir} FILES ${target_source})
 
-set(gen_dir ${CMAKE_SOURCE_DIR}/gen/modules)
-add_source_dir(${gen_dir} *.cpp *.h *.cc)
+file(GLOB_RECURSE target_gen_source ${target_gen_dir}/*.cpp)
+source_group(TREE ${target_gen_dir} FILES ${target_gen_source})
 
-add_library(${target_name} ${target_src} ${ret_${gen_dir}})
+add_library(${target_name} ${target_source} ${target_gen_source})
 
 target_include_directories(${target_name} PUBLIC ${target_dir}) 
 
-target_include_directories(${target_name} PUBLIC ${gen_dir}/gdscript)
+target_include_directories(${target_name} PUBLIC ${target_gen_dir}/gdscript)
 
 target_include_directories(${target_name} PRIVATE ${thirdin_dir})
 target_include_directories(${target_name} PRIVATE ${thirdin_dir}/zlib)

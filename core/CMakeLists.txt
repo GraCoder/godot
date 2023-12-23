@@ -2,19 +2,23 @@ cmake_minimum_required(VERSION 3.24)
 
 set(target_name gd_core)
 
-project(${target_name})
-
 #set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
-set(src_dir ${CMAKE_CURRENT_SOURCE_DIR})
-add_source_dir(${src_dir} *.cpp *.h *.cc)
+set(target_dir ${CMAKE_CURRENT_SOURCE_DIR})
+set(target_gen_dir ${gen_dir}/core)
 
-set(gen_dir ${CMAKE_SOURCE_DIR}/gen/core)
-add_source_dir(${gen_dir} *.cpp *.h *.cc)
+file(GLOB_RECURSE target_source ${target_dir}/*.cpp)
+file(GLOB_RECURSE target_gen_source ${target_gen_dir}/*.cpp)
 
-add_library(${target_name} ${target_src} ${ret_${src_dir}} ${ret_${gen_dir}})
+source_group(TREE ${target_dir} FILES ${target_source})
+source_group(TREE ${target_gen_dir} FILES ${target_gen_source})
 
-target_include_directories(${target_name} PUBLIC ${third_inc})
+add_library(${target_name} ${target_source} ${target_gen_source})
+
+target_compile_definitions(${target_name} PUBLIC NOMINMAX)
+
+target_include_directories(${target_name} PUBLIC ${thirdin_dir})
+target_include_directories(${target_name} PUBLIC ${thirdin_dir}/zlib)
 target_include_directories(${target_name} PRIVATE ${thirdin_dir}/mbedtls/include)
 
 target_link_directories(${target_name} PRIVATE ${third_lib})

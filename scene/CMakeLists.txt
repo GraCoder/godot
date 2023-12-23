@@ -2,19 +2,16 @@ cmake_minimum_required(VERSION 3.24)
 
 set(target_name gd_scene)
 
-project(${target_name})
+set(target_dir ${CMAKE_CURRENT_SOURCE_DIR})
+set(target_gen_dir ${gen_dir}/scene)
 
-set(src_dir
-	${CMAKE_CURRENT_SOURCE_DIR}
-)
+file(GLOB_RECURSE target_source ${target_dir}/*.cpp ${target_dir}/*.cc)
+file(GLOB_RECURSE target_gen_source ${target_gen_dir}/*.cpp)
 
-add_source_dir(${src_dir} *.cpp *.h *.cc)
+source_group(TREE ${target_dir} FILES ${target_source})
+source_group(TREE ${target_gen_dir} FILES ${target_gen_source})
 
-set(target_src
-	#${src_dir}/resources/default_theme/default_theme.cpp
-)
-
-add_library(${target_name} ${ret_${CMAKE_CURRENT_SOURCE_DIR}} ${target_src})
+add_library(${target_name} ${target_source} ${target_gen_source})
 
 target_include_directories(${target_name} PRIVATE ${CMAKE_SOURCE_DIR})
 
