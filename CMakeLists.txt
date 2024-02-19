@@ -86,6 +86,8 @@ if(MSVC)
 	add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/bigobj>")
 
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4305 /wd4267")
+
+	set(CMAKE_MSVC_RUNTIME_LIBRARY MultiThreadedDLL)
 endif()
 
 include_directories(${CMAKE_SOURCE_DIR})
