@@ -30,7 +30,7 @@
 
 #pragma once
 
-#include "profiling.gen.h"
+#include "core/profiling/profiling.gen.h"
 
 // This header provides profiling primitives (implemented as macros) for various backends.
 // See the "No profiling" branch at the bottom for a short description of the functions.

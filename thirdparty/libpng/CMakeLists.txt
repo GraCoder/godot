@@ -12,14 +12,9 @@ set(src_dirs
 	${target_dir}
 )
 
-set(target_src)
+file(GLOB_RECURSE target_source "*.c")
 
-foreach(src_dir ${src_dirs})
-	add_source_file(${src_dir} *.cpp *.h *.c)
-	list(APPEND target_src ${ret_${src_dir}})
-endforeach()
-
-add_library(${target_name} SHARED ${target_src})
+add_library(${target_name} STATIC ${target_source})
 
 set_target_properties(${target_name} PROPERTIES FOLDER "third")
 
@@ -28,6 +23,6 @@ set_target_properties(${target_name} PROPERTIES FOLDER "third")
 target_include_directories(${target_name} PRIVATE ${target_dir})
 target_include_directories(${target_name} PRIVATE ${target_dir}/include)
 
-target_include_directories(${target_name} PRIVATE ${thirdin_dir}/zlib)
+target_include_directories(${target_name} PRIVATE ${third_dir}/zlib)
 
 target_link_libraries(${target_name} PRIVATE zlib)

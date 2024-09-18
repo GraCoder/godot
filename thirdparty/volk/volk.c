@@ -76,8 +76,7 @@ VkResult volkInitialize(void)
 		return VK_ERROR_INITIALIZATION_FAILED;
 
 	// note: function pointer is cast through void function pointer to silence cast-function-type warning on gcc8
-  FARPROC addr = GetProcAddress(module, "vkGetInstanceProcAddr");
-	vkGetInstanceProcAddr = (PFN_vkGetInstanceProcAddr)(void(*)(void))addr;
+	vkGetInstanceProcAddr = (PFN_vkGetInstanceProcAddr)(void(*)(void))GetProcAddress(module, "vkGetInstanceProcAddr");
 #elif defined(__APPLE__)
 	void* module = dlopen("libvulkan.dylib", RTLD_NOW | RTLD_LOCAL);
 	if (!module)

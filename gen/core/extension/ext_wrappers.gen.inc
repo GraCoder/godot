@@ -1,41 +1,38 @@
-
-#ifndef GDEXTENSION_WRAPPERS_GEN_H
-#define GDEXTENSION_WRAPPERS_GEN_H
-
+#pragma once
 /* Extension Wrapper 0 Arguments */
 
 #define EXBIND0( m_name) \
-GDVIRTUAL0(_##m_name)\
+GDVIRTUAL0_REQUIRED(_##m_name)\
 virtual void m_name()  override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name);\
+    GDVIRTUAL_CALL(_##m_name);\
     return;\
 }
 
 #define EXBIND0R(m_ret,  m_name) \
-GDVIRTUAL0R(m_ret, _##m_name)\
+GDVIRTUAL0R_REQUIRED(m_ret, _##m_name)\
 virtual m_ret m_name()  override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, ret);\
+    GDVIRTUAL_CALL(_##m_name, ret);\
     return ret;\
 \
 }
 
 #define EXBIND0C( m_name) \
-GDVIRTUAL0C(_##m_name)\
+GDVIRTUAL0C_REQUIRED(_##m_name)\
 virtual void m_name() const override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name);\
+    GDVIRTUAL_CALL(_##m_name);\
     return;\
 }
 
 #define EXBIND0RC(m_ret,  m_name) \
-GDVIRTUAL0RC(m_ret, _##m_name)\
+GDVIRTUAL0RC_REQUIRED(m_ret, _##m_name)\
 virtual m_ret m_name() const override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, ret);\
+    GDVIRTUAL_CALL(_##m_name, ret);\
     return ret;\
 \
 }
@@ -43,37 +40,37 @@ virtual m_ret m_name() const override { \
 /* Extension Wrapper 1 Arguments */
 
 #define EXBIND1( m_name, m_type1) \
-GDVIRTUAL1(_##m_name, m_type1)\
+GDVIRTUAL1_REQUIRED(_##m_name, m_type1)\
 virtual void m_name(m_type1 arg1)  override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1);\
+    GDVIRTUAL_CALL(_##m_name, arg1);\
     return;\
 }
 
 #define EXBIND1R(m_ret,  m_name, m_type1) \
-GDVIRTUAL1R(m_ret, _##m_name, m_type1)\
+GDVIRTUAL1R_REQUIRED(m_ret, _##m_name, m_type1)\
 virtual m_ret m_name(m_type1 arg1)  override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, ret);\
+    GDVIRTUAL_CALL(_##m_name, arg1, ret);\
     return ret;\
 \
 }
 
 #define EXBIND1C( m_name, m_type1) \
-GDVIRTUAL1C(_##m_name, m_type1)\
+GDVIRTUAL1C_REQUIRED(_##m_name, m_type1)\
 virtual void m_name(m_type1 arg1) const override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1);\
+    GDVIRTUAL_CALL(_##m_name, arg1);\
     return;\
 }
 
 #define EXBIND1RC(m_ret,  m_name, m_type1) \
-GDVIRTUAL1RC(m_ret, _##m_name, m_type1)\
+GDVIRTUAL1RC_REQUIRED(m_ret, _##m_name, m_type1)\
 virtual m_ret m_name(m_type1 arg1) const override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, ret);\
+    GDVIRTUAL_CALL(_##m_name, arg1, ret);\
     return ret;\
 \
 }
@@ -81,37 +78,37 @@ virtual m_ret m_name(m_type1 arg1) const override { \
 /* Extension Wrapper 2 Arguments */
 
 #define EXBIND2( m_name, m_type1, m_type2) \
-GDVIRTUAL2(_##m_name, m_type1, m_type2)\
+GDVIRTUAL2_REQUIRED(_##m_name, m_type1, m_type2)\
 virtual void m_name(m_type1 arg1, m_type2 arg2)  override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2);\
     return;\
 }
 
 #define EXBIND2R(m_ret,  m_name, m_type1, m_type2) \
-GDVIRTUAL2R(m_ret, _##m_name, m_type1, m_type2)\
+GDVIRTUAL2R_REQUIRED(m_ret, _##m_name, m_type1, m_type2)\
 virtual m_ret m_name(m_type1 arg1, m_type2 arg2)  override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, ret);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, ret);\
     return ret;\
 \
 }
 
 #define EXBIND2C( m_name, m_type1, m_type2) \
-GDVIRTUAL2C(_##m_name, m_type1, m_type2)\
+GDVIRTUAL2C_REQUIRED(_##m_name, m_type1, m_type2)\
 virtual void m_name(m_type1 arg1, m_type2 arg2) const override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2);\
     return;\
 }
 
 #define EXBIND2RC(m_ret,  m_name, m_type1, m_type2) \
-GDVIRTUAL2RC(m_ret, _##m_name, m_type1, m_type2)\
+GDVIRTUAL2RC_REQUIRED(m_ret, _##m_name, m_type1, m_type2)\
 virtual m_ret m_name(m_type1 arg1, m_type2 arg2) const override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, ret);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, ret);\
     return ret;\
 \
 }
@@ -119,37 +116,37 @@ virtual m_ret m_name(m_type1 arg1, m_type2 arg2) const override { \
 /* Extension Wrapper 3 Arguments */
 
 #define EXBIND3( m_name, m_type1, m_type2, m_type3) \
-GDVIRTUAL3(_##m_name, m_type1, m_type2, m_type3)\
+GDVIRTUAL3_REQUIRED(_##m_name, m_type1, m_type2, m_type3)\
 virtual void m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3)  override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3);\
     return;\
 }
 
 #define EXBIND3R(m_ret,  m_name, m_type1, m_type2, m_type3) \
-GDVIRTUAL3R(m_ret, _##m_name, m_type1, m_type2, m_type3)\
+GDVIRTUAL3R_REQUIRED(m_ret, _##m_name, m_type1, m_type2, m_type3)\
 virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3)  override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, ret);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, ret);\
     return ret;\
 \
 }
 
 #define EXBIND3C( m_name, m_type1, m_type2, m_type3) \
-GDVIRTUAL3C(_##m_name, m_type1, m_type2, m_type3)\
+GDVIRTUAL3C_REQUIRED(_##m_name, m_type1, m_type2, m_type3)\
 virtual void m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3) const override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3);\
     return;\
 }
 
 #define EXBIND3RC(m_ret,  m_name, m_type1, m_type2, m_type3) \
-GDVIRTUAL3RC(m_ret, _##m_name, m_type1, m_type2, m_type3)\
+GDVIRTUAL3RC_REQUIRED(m_ret, _##m_name, m_type1, m_type2, m_type3)\
 virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3) const override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, ret);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, ret);\
     return ret;\
 \
 }
@@ -157,37 +154,37 @@ virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3) const override { 
 /* Extension Wrapper 4 Arguments */
 
 #define EXBIND4( m_name, m_type1, m_type2, m_type3, m_type4) \
-GDVIRTUAL4(_##m_name, m_type1, m_type2, m_type3, m_type4)\
+GDVIRTUAL4_REQUIRED(_##m_name, m_type1, m_type2, m_type3, m_type4)\
 virtual void m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4)  override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4);\
     return;\
 }
 
 #define EXBIND4R(m_ret,  m_name, m_type1, m_type2, m_type3, m_type4) \
-GDVIRTUAL4R(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4)\
+GDVIRTUAL4R_REQUIRED(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4)\
 virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4)  override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, ret);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, ret);\
     return ret;\
 \
 }
 
 #define EXBIND4C( m_name, m_type1, m_type2, m_type3, m_type4) \
-GDVIRTUAL4C(_##m_name, m_type1, m_type2, m_type3, m_type4)\
+GDVIRTUAL4C_REQUIRED(_##m_name, m_type1, m_type2, m_type3, m_type4)\
 virtual void m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4) const override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4);\
     return;\
 }
 
 #define EXBIND4RC(m_ret,  m_name, m_type1, m_type2, m_type3, m_type4) \
-GDVIRTUAL4RC(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4)\
+GDVIRTUAL4RC_REQUIRED(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4)\
 virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4) const override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, ret);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, ret);\
     return ret;\
 \
 }
@@ -195,37 +192,37 @@ virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4) con
 /* Extension Wrapper 5 Arguments */
 
 #define EXBIND5( m_name, m_type1, m_type2, m_type3, m_type4, m_type5) \
-GDVIRTUAL5(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5)\
+GDVIRTUAL5_REQUIRED(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5)\
 virtual void m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5)  override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5);\
     return;\
 }
 
 #define EXBIND5R(m_ret,  m_name, m_type1, m_type2, m_type3, m_type4, m_type5) \
-GDVIRTUAL5R(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5)\
+GDVIRTUAL5R_REQUIRED(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5)\
 virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5)  override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, ret);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, ret);\
     return ret;\
 \
 }
 
 #define EXBIND5C( m_name, m_type1, m_type2, m_type3, m_type4, m_type5) \
-GDVIRTUAL5C(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5)\
+GDVIRTUAL5C_REQUIRED(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5)\
 virtual void m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5) const override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5);\
     return;\
 }
 
 #define EXBIND5RC(m_ret,  m_name, m_type1, m_type2, m_type3, m_type4, m_type5) \
-GDVIRTUAL5RC(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5)\
+GDVIRTUAL5RC_REQUIRED(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5)\
 virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5) const override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, ret);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, ret);\
     return ret;\
 \
 }
@@ -233,37 +230,37 @@ virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_t
 /* Extension Wrapper 6 Arguments */
 
 #define EXBIND6( m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6) \
-GDVIRTUAL6(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6)\
+GDVIRTUAL6_REQUIRED(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6)\
 virtual void m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6)  override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6);\
     return;\
 }
 
 #define EXBIND6R(m_ret,  m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6) \
-GDVIRTUAL6R(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6)\
+GDVIRTUAL6R_REQUIRED(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6)\
 virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6)  override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, ret);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, ret);\
     return ret;\
 \
 }
 
 #define EXBIND6C( m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6) \
-GDVIRTUAL6C(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6)\
+GDVIRTUAL6C_REQUIRED(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6)\
 virtual void m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6) const override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6);\
     return;\
 }
 
 #define EXBIND6RC(m_ret,  m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6) \
-GDVIRTUAL6RC(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6)\
+GDVIRTUAL6RC_REQUIRED(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6)\
 virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6) const override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, ret);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, ret);\
     return ret;\
 \
 }
@@ -271,37 +268,37 @@ virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_t
 /* Extension Wrapper 7 Arguments */
 
 #define EXBIND7( m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7) \
-GDVIRTUAL7(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7)\
+GDVIRTUAL7_REQUIRED(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7)\
 virtual void m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6, m_type7 arg7)  override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7);\
     return;\
 }
 
 #define EXBIND7R(m_ret,  m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7) \
-GDVIRTUAL7R(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7)\
+GDVIRTUAL7R_REQUIRED(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7)\
 virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6, m_type7 arg7)  override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, ret);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, ret);\
     return ret;\
 \
 }
 
 #define EXBIND7C( m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7) \
-GDVIRTUAL7C(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7)\
+GDVIRTUAL7C_REQUIRED(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7)\
 virtual void m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6, m_type7 arg7) const override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7);\
     return;\
 }
 
 #define EXBIND7RC(m_ret,  m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7) \
-GDVIRTUAL7RC(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7)\
+GDVIRTUAL7RC_REQUIRED(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7)\
 virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6, m_type7 arg7) const override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, ret);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, ret);\
     return ret;\
 \
 }
@@ -309,37 +306,37 @@ virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_t
 /* Extension Wrapper 8 Arguments */
 
 #define EXBIND8( m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8) \
-GDVIRTUAL8(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8)\
+GDVIRTUAL8_REQUIRED(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8)\
 virtual void m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6, m_type7 arg7, m_type8 arg8)  override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);\
     return;\
 }
 
 #define EXBIND8R(m_ret,  m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8) \
-GDVIRTUAL8R(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8)\
+GDVIRTUAL8R_REQUIRED(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8)\
 virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6, m_type7 arg7, m_type8 arg8)  override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, ret);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, ret);\
     return ret;\
 \
 }
 
 #define EXBIND8C( m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8) \
-GDVIRTUAL8C(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8)\
+GDVIRTUAL8C_REQUIRED(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8)\
 virtual void m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6, m_type7 arg7, m_type8 arg8) const override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);\
     return;\
 }
 
 #define EXBIND8RC(m_ret,  m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8) \
-GDVIRTUAL8RC(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8)\
+GDVIRTUAL8RC_REQUIRED(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8)\
 virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6, m_type7 arg7, m_type8 arg8) const override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, ret);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, ret);\
     return ret;\
 \
 }
@@ -347,37 +344,37 @@ virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_t
 /* Extension Wrapper 9 Arguments */
 
 #define EXBIND9( m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9) \
-GDVIRTUAL9(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9)\
+GDVIRTUAL9_REQUIRED(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9)\
 virtual void m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6, m_type7 arg7, m_type8 arg8, m_type9 arg9)  override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);\
     return;\
 }
 
 #define EXBIND9R(m_ret,  m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9) \
-GDVIRTUAL9R(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9)\
+GDVIRTUAL9R_REQUIRED(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9)\
 virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6, m_type7 arg7, m_type8 arg8, m_type9 arg9)  override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, ret);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, ret);\
     return ret;\
 \
 }
 
 #define EXBIND9C( m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9) \
-GDVIRTUAL9C(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9)\
+GDVIRTUAL9C_REQUIRED(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9)\
 virtual void m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6, m_type7 arg7, m_type8 arg8, m_type9 arg9) const override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);\
     return;\
 }
 
 #define EXBIND9RC(m_ret,  m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9) \
-GDVIRTUAL9RC(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9)\
+GDVIRTUAL9RC_REQUIRED(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9)\
 virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6, m_type7 arg7, m_type8 arg8, m_type9 arg9) const override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, ret);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, ret);\
     return ret;\
 \
 }
@@ -385,37 +382,37 @@ virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_t
 /* Extension Wrapper 10 Arguments */
 
 #define EXBIND10( m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10) \
-GDVIRTUAL10(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10)\
+GDVIRTUAL10_REQUIRED(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10)\
 virtual void m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6, m_type7 arg7, m_type8 arg8, m_type9 arg9, m_type10 arg10)  override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);\
     return;\
 }
 
 #define EXBIND10R(m_ret,  m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10) \
-GDVIRTUAL10R(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10)\
+GDVIRTUAL10R_REQUIRED(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10)\
 virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6, m_type7 arg7, m_type8 arg8, m_type9 arg9, m_type10 arg10)  override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, ret);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, ret);\
     return ret;\
 \
 }
 
 #define EXBIND10C( m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10) \
-GDVIRTUAL10C(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10)\
+GDVIRTUAL10C_REQUIRED(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10)\
 virtual void m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6, m_type7 arg7, m_type8 arg8, m_type9 arg9, m_type10 arg10) const override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);\
     return;\
 }
 
 #define EXBIND10RC(m_ret,  m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10) \
-GDVIRTUAL10RC(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10)\
+GDVIRTUAL10RC_REQUIRED(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10)\
 virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6, m_type7 arg7, m_type8 arg8, m_type9 arg9, m_type10 arg10) const override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, ret);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, ret);\
     return ret;\
 \
 }
@@ -423,37 +420,37 @@ virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_t
 /* Extension Wrapper 11 Arguments */
 
 #define EXBIND11( m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10, m_type11) \
-GDVIRTUAL11(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10, m_type11)\
+GDVIRTUAL11_REQUIRED(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10, m_type11)\
 virtual void m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6, m_type7 arg7, m_type8 arg8, m_type9 arg9, m_type10 arg10, m_type11 arg11)  override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11);\
     return;\
 }
 
 #define EXBIND11R(m_ret,  m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10, m_type11) \
-GDVIRTUAL11R(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10, m_type11)\
+GDVIRTUAL11R_REQUIRED(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10, m_type11)\
 virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6, m_type7 arg7, m_type8 arg8, m_type9 arg9, m_type10 arg10, m_type11 arg11)  override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, ret);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, ret);\
     return ret;\
 \
 }
 
 #define EXBIND11C( m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10, m_type11) \
-GDVIRTUAL11C(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10, m_type11)\
+GDVIRTUAL11C_REQUIRED(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10, m_type11)\
 virtual void m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6, m_type7 arg7, m_type8 arg8, m_type9 arg9, m_type10 arg10, m_type11 arg11) const override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11);\
     return;\
 }
 
 #define EXBIND11RC(m_ret,  m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10, m_type11) \
-GDVIRTUAL11RC(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10, m_type11)\
+GDVIRTUAL11RC_REQUIRED(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10, m_type11)\
 virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6, m_type7 arg7, m_type8 arg8, m_type9 arg9, m_type10 arg10, m_type11 arg11) const override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, ret);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, ret);\
     return ret;\
 \
 }
@@ -461,37 +458,37 @@ virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_t
 /* Extension Wrapper 12 Arguments */
 
 #define EXBIND12( m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10, m_type11, m_type12) \
-GDVIRTUAL12(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10, m_type11, m_type12)\
+GDVIRTUAL12_REQUIRED(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10, m_type11, m_type12)\
 virtual void m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6, m_type7 arg7, m_type8 arg8, m_type9 arg9, m_type10 arg10, m_type11 arg11, m_type12 arg12)  override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12);\
     return;\
 }
 
 #define EXBIND12R(m_ret,  m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10, m_type11, m_type12) \
-GDVIRTUAL12R(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10, m_type11, m_type12)\
+GDVIRTUAL12R_REQUIRED(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10, m_type11, m_type12)\
 virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6, m_type7 arg7, m_type8 arg8, m_type9 arg9, m_type10 arg10, m_type11 arg11, m_type12 arg12)  override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, ret);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, ret);\
     return ret;\
 \
 }
 
 #define EXBIND12C( m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10, m_type11, m_type12) \
-GDVIRTUAL12C(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10, m_type11, m_type12)\
+GDVIRTUAL12C_REQUIRED(_##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10, m_type11, m_type12)\
 virtual void m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6, m_type7 arg7, m_type8 arg8, m_type9 arg9, m_type10 arg10, m_type11 arg11, m_type12 arg12) const override { \
     \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12);\
     return;\
 }
 
 #define EXBIND12RC(m_ret,  m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10, m_type11, m_type12) \
-GDVIRTUAL12RC(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10, m_type11, m_type12)\
+GDVIRTUAL12RC_REQUIRED(m_ret, _##m_name, m_type1, m_type2, m_type3, m_type4, m_type5, m_type6, m_type7, m_type8, m_type9, m_type10, m_type11, m_type12)\
 virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6, m_type7 arg7, m_type8 arg8, m_type9 arg9, m_type10 arg10, m_type11 arg11, m_type12 arg12) const override { \
     m_ret ret; ZeroInitializer<m_ret>::initialize(ret);\
 \
-    GDVIRTUAL_REQUIRED_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, ret);\
+    GDVIRTUAL_CALL(_##m_name, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, ret);\
     return ret;\
 \
 }
@@ -833,5 +830,3 @@ virtual m_ret _##m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, 
 _FORCE_INLINE_ virtual m_ret m_name(m_type1 arg1, m_type2 arg2, m_type3 arg3, m_type4 arg4, m_type5 arg5, m_type6 arg6, m_type7 arg7, m_type8 arg8, m_type9 arg9, m_type10 arg10, m_type11 arg11, m_type12 arg12) const override { \
     return _##m_name(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12);\
 }
-
-#endif

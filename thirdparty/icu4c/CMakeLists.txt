@@ -13,13 +13,13 @@ set(src_dirs
 	${target_dir}/i18n
 )
 
-set(target_src)
+set(target_source)
 
 foreach(src_dir ${src_dirs})
 	add_source_dir(${src_dir} *.cpp *.h)
-	list(APPEND target_src ${ret_${src_dir}})
+	list(APPEND target_source ${ret_${src_dir}})
 endforeach()
-add_library(${target_name} SHARED ${target_src})
+add_library(${target_name} SHARED ${target_source})
 
 target_compile_definitions(${target_name} PRIVATE U_COMBINED_IMPLEMENTATION U_COMMON_IMPLEMENTATION ICU_DATA_DIR_WINDOWS="${target_dir}")
 

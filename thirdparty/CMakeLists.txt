@@ -31,21 +31,27 @@ add_subdirectory(harfbuzz)
 add_subdirectory(mbedtls)
 add_subdirectory(zstd)
 add_subdirectory(zlib)
-add_subdirectory(libpng)
 add_subdirectory(icu4c)
 add_subdirectory(brotli)
 add_subdirectory(freetype)
 add_subdirectory(amd-fsr2)
 add_subdirectory(misc)
 add_subdirectory(vulkan)
+add_subdirectory(libpng)
+add_subdirectory(libwebp)
+add_subdirectory(libjpeg-turbo)
+add_subdirectory(pcre2)
+#add_subdirectory(manifold)
 
 set(src_dirs
 	${target_dir}/basis_universal
+	${target_dir}/clipper2
 	${target_dir}/minizip
 	${target_dir}/spirv-reflect
 	${target_dir}/rvo2
 	${target_dir}/recastnavigation/Recast
 	${target_dir}/jpeg-compressor
+	${target_dir}/re-spirv
 	#${target_dir}/vulkan
 	#${target_dir}/glad
 	#${target_dir}/misc
@@ -62,14 +68,16 @@ source_group(TREE ${target_dir} FILES ${target_source})
 add_library(${target_name} ${target_source})
 
 target_include_directories(${target_name} PRIVATE ${target_dir})
+target_include_directories(${target_name} PRIVATE ${target_dir}/clipper2/include)
 target_include_directories(${target_name} PRIVATE ${target_dir}/zlib)
 target_include_directories(${target_name} PRIVATE ${target_dir}/glad)
 target_include_directories(${target_name} PRIVATE ${target_dir}/recastnavigation/Recast/Include)
 target_include_directories(${target_name} PRIVATE ${target_dir}/zstd)
-#target_include_directories(${target_name} PRIVATE ${target_dir}/wslay)
+target_include_directories(${target_name} PRIVATE ${target_dir}/tinyexr)
+target_include_directories(${target_name} PRIVATE ${target_dir}/spirv-headers/include)
 
 target_include_directories(${target_name} PRIVATE ${third_inc})
 
 target_link_directories(${target_name} PRIVATE ${third_lib})
 
-target_link_libraries(${target_name} PRIVATE thorvg glslang harfbuzz mbedtls zstd zlib libpng amd-fsr2 misc)
+target_link_libraries(${target_name} PRIVATE thorvg glslang harfbuzz mbedtls zstd zlib amd-fsr2 misc)

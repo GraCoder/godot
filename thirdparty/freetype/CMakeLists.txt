@@ -61,14 +61,14 @@ set(prj_src_files
     src/winfonts/winfnt.c
 )
 
-set(target_src)
+set(target_source)
 
 foreach(src_dir ${src_dirs})
 	add_source_dir(${src_dir} *.h *.c)
-	list(APPEND target_src ${ret_${src_dir}})
+	list(APPEND target_source ${ret_${src_dir}})
 endforeach()
 
-add_library(${target_name} SHARED ${target_src} ${prj_src_files})
+add_library(${target_name} SHARED ${target_source} ${prj_src_files})
 
 target_compile_definitions(${target_name} PRIVATE FT2_BUILD_LIBRARY  DLL_EXPORT FT_CONFIG_OPTION_USE_BROTLI)
 
@@ -77,7 +77,7 @@ set_target_properties(${target_name} PROPERTIES FOLDER "third")
 target_include_directories(${target_name} PRIVATE ${target_dir})
 target_include_directories(${target_name} PRIVATE ${target_dir}/include)
 
-target_include_directories(${target_name} PRIVATE  ${thirdin_dir}/zlib ${thirdin_dir}/brotli/include)
+target_include_directories(${target_name} PRIVATE  ${third_dir}/zlib ${third_dir}/brotli/include)
 
 target_include_directories(${target_name} PRIVATE ${third_inc})
 

@@ -39,7 +39,7 @@
 #include "core/os/keyboard.h"
 #include "core/string/string_builder.h"
 #include "core/version.h"
-#include "editor/doc/doc_data_compressed.gen.h"
+//#include "editor/doc/doc_data_compressed.gen.h"
 #include "editor/docks/filesystem_dock.h"
 #include "editor/editor_main_screen.h"
 #include "editor/editor_node.h"
@@ -2962,7 +2962,7 @@ void EditorHelp::_wait_for_thread(Thread &p_thread) {
 
 void EditorHelp::_compute_doc_version_hash() {
 	uint32_t version_hash = Engine::get_singleton()->get_version_info().hash();
-	doc_version_hash = vformat("%d/%d/%d/%s", version_hash, ClassDB::get_api_hash(ClassDB::API_CORE), ClassDB::get_api_hash(ClassDB::API_EDITOR), _doc_data_hash);
+	//doc_version_hash = vformat("%d/%d/%d/%s", version_hash, ClassDB::get_api_hash(ClassDB::API_CORE), ClassDB::get_api_hash(ClassDB::API_EDITOR), _doc_data_hash);
 }
 
 String EditorHelp::get_cache_full_path() {
@@ -3060,7 +3060,7 @@ void EditorHelp::_load_doc_thread(void *p_udata) {
 
 void EditorHelp::_gen_doc_thread(void *p_udata) {
 	DocTools compdoc;
-	compdoc.load_compressed(_doc_data_compressed, _doc_data_compressed_size, _doc_data_uncompressed_size);
+	//compdoc.load_compressed(_doc_data_compressed, _doc_data_compressed_size, _doc_data_uncompressed_size);
 	doc->merge_from(compdoc); // Ensure all is up to date.
 
 	Ref<Resource> cache_res;

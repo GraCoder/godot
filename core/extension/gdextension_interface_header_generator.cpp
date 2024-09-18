@@ -33,7 +33,7 @@
 #include "gdextension_interface_header_generator.h"
 
 #include "core/io/json.h"
-#include "gdextension_interface_dump.gen.h"
+#include "core/extension/gdextension_interface_dump.gen.h"
 
 static const char *FILE_HEADER =
 		"/**************************************************************************/\n"

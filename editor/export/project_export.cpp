@@ -57,7 +57,7 @@
 #include "scene/gui/texture_rect.h"
 #include "scene/gui/tree.h"
 
-#include <zstd.h>
+#include <zstd/zstd.h>
 
 void ProjectExportTextureFormatError::_on_fix_texture_format_pressed() {
 	export_dialog->hide();

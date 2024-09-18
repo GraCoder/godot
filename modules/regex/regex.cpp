@@ -34,7 +34,8 @@
 #include "core/os/memory.h"
 
 extern "C" {
-#include <pcre2.h>
+#define PCRE2_CODE_UNIT_WIDTH 32
+#include <pcre2/src/pcre2.h>
 }
 
 static void *_regex_malloc(PCRE2_SIZE size, void *user) {

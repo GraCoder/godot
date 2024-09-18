@@ -1,11 +1,43 @@
-// register_module_types.gen.cpp
-/* THIS FILE IS GENERATED DO NOT EDIT */
+/**************************************************************************/
+/*  register_module_types.gen.cpp                                         */
+/**************************************************************************/
+/*                         This file is part of:                          */
+/*                             GODOT ENGINE                               */
+/*                        https://godotengine.org                         */
+/**************************************************************************/
+/* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
+/* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
+/*                                                                        */
+/* Permission is hereby granted, free of charge, to any person obtaining  */
+/* a copy of this software and associated documentation files (the        */
+/* "Software"), to deal in the Software without restriction, including    */
+/* without limitation the rights to use, copy, modify, merge, publish,    */
+/* distribute, sublicense, and/or sell copies of the Software, and to     */
+/* permit persons to whom the Software is furnished to do so, subject to  */
+/* the following conditions:                                              */
+/*                                                                        */
+/* The above copyright notice and this permission notice shall be         */
+/* included in all copies or substantial portions of the Software.        */
+/*                                                                        */
+/* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,        */
+/* EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF     */
+/* MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. */
+/* IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY   */
+/* CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,   */
+/* TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE      */
+/* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
+/**************************************************************************/
+
+/* THIS FILE IS GENERATED. EDITS WILL BE LOST. */
+
 #include "register_module_types.h"
 
 #include "modules/modules_enabled.gen.h"
 
 #include "modules/astcenc/register_types.h"
 #include "modules/basis_universal/register_types.h"
+#include "modules/bcdec/register_types.h"
+#include "modules/betsy/register_types.h"
 #include "modules/bmp/register_types.h"
 #include "modules/camera/register_types.h"
 #include "modules/csg/register_types.h"
@@ -13,30 +45,36 @@
 #include "modules/dds/register_types.h"
 #include "modules/enet/register_types.h"
 #include "modules/etcpak/register_types.h"
+#include "modules/fbx/register_types.h"
 #include "modules/freetype/register_types.h"
 #include "modules/gdscript/register_types.h"
 #include "modules/glslang/register_types.h"
 #include "modules/gltf/register_types.h"
+#include "modules/godot_physics_2d/register_types.h"
+#include "modules/godot_physics_3d/register_types.h"
 #include "modules/gridmap/register_types.h"
 #include "modules/hdr/register_types.h"
+#include "modules/interactive_music/register_types.h"
+#include "modules/jolt_physics/register_types.h"
 #include "modules/jpg/register_types.h"
 #include "modules/jsonrpc/register_types.h"
 #include "modules/ktx/register_types.h"
 #include "modules/lightmapper_rd/register_types.h"
 #include "modules/mbedtls/register_types.h"
 #include "modules/meshoptimizer/register_types.h"
-#include "modules/minimp3/register_types.h"
 #include "modules/mobile_vr/register_types.h"
 #include "modules/mono/register_types.h"
+#include "modules/mp3/register_types.h"
 #include "modules/msdfgen/register_types.h"
 #include "modules/multiplayer/register_types.h"
-#include "modules/navigation/register_types.h"
+#include "modules/navigation_2d/register_types.h"
+#include "modules/navigation_3d/register_types.h"
 #include "modules/noise/register_types.h"
+#include "modules/objectdb_profiler/register_types.h"
 #include "modules/ogg/register_types.h"
 #include "modules/openxr/register_types.h"
 #include "modules/raycast/register_types.h"
 #include "modules/regex/register_types.h"
-#include "modules/squish/register_types.h"
 #include "modules/svg/register_types.h"
 #include "modules/text_server_adv/register_types.h"
 #include "modules/text_server_fb/register_types.h"
@@ -53,13 +91,18 @@
 #include "modules/xatlas_unwrap/register_types.h"
 #include "modules/zip/register_types.h"
 
-
 void initialize_modules(ModuleInitializationLevel p_level) {
 #ifdef MODULE_ASTCENC_ENABLED
 	initialize_astcenc_module(p_level);
 #endif
 #ifdef MODULE_BASIS_UNIVERSAL_ENABLED
 	initialize_basis_universal_module(p_level);
+#endif
+#ifdef MODULE_BCDEC_ENABLED
+	initialize_bcdec_module(p_level);
+#endif
+#ifdef MODULE_BETSY_ENABLED
+	initialize_betsy_module(p_level);
 #endif
 #ifdef MODULE_BMP_ENABLED
 	initialize_bmp_module(p_level);
@@ -82,6 +125,9 @@ void initialize_modules(ModuleInitializationLevel p_level) {
 #ifdef MODULE_ETCPAK_ENABLED
 	initialize_etcpak_module(p_level);
 #endif
+#ifdef MODULE_FBX_ENABLED
+	initialize_fbx_module(p_level);
+#endif
 #ifdef MODULE_FREETYPE_ENABLED
 	initialize_freetype_module(p_level);
 #endif
@@ -94,11 +140,23 @@ void initialize_modules(ModuleInitializationLevel p_level) {
 #ifdef MODULE_GLTF_ENABLED
 	initialize_gltf_module(p_level);
 #endif
+#ifdef MODULE_GODOT_PHYSICS_2D_ENABLED
+	initialize_godot_physics_2d_module(p_level);
+#endif
+#ifdef MODULE_GODOT_PHYSICS_3D_ENABLED
+	initialize_godot_physics_3d_module(p_level);
+#endif
 #ifdef MODULE_GRIDMAP_ENABLED
 	initialize_gridmap_module(p_level);
 #endif
 #ifdef MODULE_HDR_ENABLED
 	initialize_hdr_module(p_level);
+#endif
+#ifdef MODULE_INTERACTIVE_MUSIC_ENABLED
+	initialize_interactive_music_module(p_level);
+#endif
+#ifdef MODULE_JOLT_PHYSICS_ENABLED
+	initialize_jolt_physics_module(p_level);
 #endif
 #ifdef MODULE_JPG_ENABLED
 	initialize_jpg_module(p_level);
@@ -118,14 +176,14 @@ void initialize_modules(ModuleInitializationLevel p_level) {
 #ifdef MODULE_MESHOPTIMIZER_ENABLED
 	initialize_meshoptimizer_module(p_level);
 #endif
-#ifdef MODULE_MINIMP3_ENABLED
-	initialize_minimp3_module(p_level);
-#endif
 #ifdef MODULE_MOBILE_VR_ENABLED
 	initialize_mobile_vr_module(p_level);
 #endif
 #ifdef MODULE_MONO_ENABLED
 	initialize_mono_module(p_level);
+#endif
+#ifdef MODULE_MP3_ENABLED
+	initialize_mp3_module(p_level);
 #endif
 #ifdef MODULE_MSDFGEN_ENABLED
 	initialize_msdfgen_module(p_level);
@@ -133,11 +191,17 @@ void initialize_modules(ModuleInitializationLevel p_level) {
 #ifdef MODULE_MULTIPLAYER_ENABLED
 	initialize_multiplayer_module(p_level);
 #endif
-#ifdef MODULE_NAVIGATION_ENABLED
-	initialize_navigation_module(p_level);
+#ifdef MODULE_NAVIGATION_2D_ENABLED
+	initialize_navigation_2d_module(p_level);
+#endif
+#ifdef MODULE_NAVIGATION_3D_ENABLED
+	initialize_navigation_3d_module(p_level);
 #endif
 #ifdef MODULE_NOISE_ENABLED
 	initialize_noise_module(p_level);
+#endif
+#ifdef MODULE_OBJECTDB_PROFILER_ENABLED
+	initialize_objectdb_profiler_module(p_level);
 #endif
 #ifdef MODULE_OGG_ENABLED
 	initialize_ogg_module(p_level);
@@ -150,9 +214,6 @@ void initialize_modules(ModuleInitializationLevel p_level) {
 #endif
 #ifdef MODULE_REGEX_ENABLED
 	initialize_regex_module(p_level);
-#endif
-#ifdef MODULE_SQUISH_ENABLED
-	initialize_squish_module(p_level);
 #endif
 #ifdef MODULE_SVG_ENABLED
 	initialize_svg_module(p_level);
@@ -199,7 +260,6 @@ void initialize_modules(ModuleInitializationLevel p_level) {
 #ifdef MODULE_ZIP_ENABLED
 	initialize_zip_module(p_level);
 #endif
-
 }
 
 void uninitialize_modules(ModuleInitializationLevel p_level) {
@@ -208,6 +268,12 @@ void uninitialize_modules(ModuleInitializationLevel p_level) {
 #endif
 #ifdef MODULE_BASIS_UNIVERSAL_ENABLED
 	uninitialize_basis_universal_module(p_level);
+#endif
+#ifdef MODULE_BCDEC_ENABLED
+	uninitialize_bcdec_module(p_level);
+#endif
+#ifdef MODULE_BETSY_ENABLED
+	uninitialize_betsy_module(p_level);
 #endif
 #ifdef MODULE_BMP_ENABLED
 	uninitialize_bmp_module(p_level);
@@ -230,6 +296,9 @@ void uninitialize_modules(ModuleInitializationLevel p_level) {
 #ifdef MODULE_ETCPAK_ENABLED
 	uninitialize_etcpak_module(p_level);
 #endif
+#ifdef MODULE_FBX_ENABLED
+	uninitialize_fbx_module(p_level);
+#endif
 #ifdef MODULE_FREETYPE_ENABLED
 	uninitialize_freetype_module(p_level);
 #endif
@@ -242,11 +311,23 @@ void uninitialize_modules(ModuleInitializationLevel p_level) {
 #ifdef MODULE_GLTF_ENABLED
 	uninitialize_gltf_module(p_level);
 #endif
+#ifdef MODULE_GODOT_PHYSICS_2D_ENABLED
+	uninitialize_godot_physics_2d_module(p_level);
+#endif
+#ifdef MODULE_GODOT_PHYSICS_3D_ENABLED
+	uninitialize_godot_physics_3d_module(p_level);
+#endif
 #ifdef MODULE_GRIDMAP_ENABLED
 	uninitialize_gridmap_module(p_level);
 #endif
 #ifdef MODULE_HDR_ENABLED
 	uninitialize_hdr_module(p_level);
+#endif
+#ifdef MODULE_INTERACTIVE_MUSIC_ENABLED
+	uninitialize_interactive_music_module(p_level);
+#endif
+#ifdef MODULE_JOLT_PHYSICS_ENABLED
+	uninitialize_jolt_physics_module(p_level);
 #endif
 #ifdef MODULE_JPG_ENABLED
 	uninitialize_jpg_module(p_level);
@@ -266,14 +347,14 @@ void uninitialize_modules(ModuleInitializationLevel p_level) {
 #ifdef MODULE_MESHOPTIMIZER_ENABLED
 	uninitialize_meshoptimizer_module(p_level);
 #endif
-#ifdef MODULE_MINIMP3_ENABLED
-	uninitialize_minimp3_module(p_level);
-#endif
 #ifdef MODULE_MOBILE_VR_ENABLED
 	uninitialize_mobile_vr_module(p_level);
 #endif
 #ifdef MODULE_MONO_ENABLED
 	uninitialize_mono_module(p_level);
+#endif
+#ifdef MODULE_MP3_ENABLED
+	uninitialize_mp3_module(p_level);
 #endif
 #ifdef MODULE_MSDFGEN_ENABLED
 	uninitialize_msdfgen_module(p_level);
@@ -281,11 +362,17 @@ void uninitialize_modules(ModuleInitializationLevel p_level) {
 #ifdef MODULE_MULTIPLAYER_ENABLED
 	uninitialize_multiplayer_module(p_level);
 #endif
-#ifdef MODULE_NAVIGATION_ENABLED
-	uninitialize_navigation_module(p_level);
+#ifdef MODULE_NAVIGATION_2D_ENABLED
+	uninitialize_navigation_2d_module(p_level);
+#endif
+#ifdef MODULE_NAVIGATION_3D_ENABLED
+	uninitialize_navigation_3d_module(p_level);
 #endif
 #ifdef MODULE_NOISE_ENABLED
 	uninitialize_noise_module(p_level);
+#endif
+#ifdef MODULE_OBJECTDB_PROFILER_ENABLED
+	uninitialize_objectdb_profiler_module(p_level);
 #endif
 #ifdef MODULE_OGG_ENABLED
 	uninitialize_ogg_module(p_level);
@@ -298,9 +385,6 @@ void uninitialize_modules(ModuleInitializationLevel p_level) {
 #endif
 #ifdef MODULE_REGEX_ENABLED
 	uninitialize_regex_module(p_level);
-#endif
-#ifdef MODULE_SQUISH_ENABLED
-	uninitialize_squish_module(p_level);
 #endif
 #ifdef MODULE_SVG_ENABLED
 	uninitialize_svg_module(p_level);
@@ -347,5 +431,4 @@ void uninitialize_modules(ModuleInitializationLevel p_level) {
 #ifdef MODULE_ZIP_ENABLED
 	uninitialize_zip_module(p_level);
 #endif
-
 }

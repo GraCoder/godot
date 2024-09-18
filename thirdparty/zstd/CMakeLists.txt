@@ -12,14 +12,14 @@ set(src_dirs
 	${target_dir}
 )
 
-set(target_src)
+set(target_source)
 
 foreach(src_dir ${src_dirs})
 	add_source_dir(${src_dir} *.cpp *.h *.c)
-	list(APPEND target_src ${ret_${src_dir}})
+	list(APPEND target_source ${ret_${src_dir}})
 endforeach()
 
-add_library(${target_name} SHARED ${target_src})
+add_library(${target_name} SHARED ${target_source})
 
 set_target_properties(${target_name} PROPERTIES FOLDER "third")
 

@@ -4,20 +4,29 @@ set(target_name gd_platform)
 
 set(target_gen_dir ${gen_dir}/platform)
 
-set( target_source
+set(target_source
     windows/godot_windows.cpp
-    windows/crash_handler_windows.cpp
     windows/os_windows.cpp
     windows/display_server_windows.cpp
     windows/key_mapping_windows.cpp
-    windows/joypad_windows.cpp
+    #windows/joypad_windows.cpp
     windows/tts_windows.cpp
     windows/windows_terminal_logger.cpp
-    windows/vulkan_context_win.cpp
     windows/gl_manager_windows_native.cpp
     windows/gl_manager_windows_angle.cpp
     windows/wgl_detect_version.cpp
+	windows/native_menu_windows.cpp
+
+	windows/rendering_context_driver_vulkan_windows.cpp
+
+	windows/crash_handler_windows_seh.cpp
+	#windows/crash_handler_windows_signal.cpp
+
+	windows/drop_target_windows.cpp
+
+	windows/windows_utils.cpp
 )
+source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${target_sources})
 
 file(GLOB_RECURSE target_gen_source ${target_gen_dir}/*.cpp)
 source_group(TREE ${target_gen_dir} FILES ${target_gen_source})
@@ -31,7 +40,7 @@ add_library(${target_name} ${target_source} ${target_gen_source} ${prj_rc})
 
 if(with_volk)
 target_compile_definitions(${target_name} PUBLIC USE_VOLK)
-target_include_directories(${target_name} PUBLIC ${thirdin_dir}/volk)
+target_include_directories(${target_name} PUBLIC ${third_dir}/volk)
 endif()
 
 if(with_vulkan)
@@ -44,8 +53,9 @@ target_include_directories(${target_name} PRIVATE ${gen_dir}/windows/export)
 
 target_include_directories(${target_name} PRIVATE ${third_inc})
 
+target_link_libraries(${target_name} PRIVATE gd_core gd_drivers)
+target_link_libraries(${target_name} PRIVATE zlib vulkan)
 
-target_link_libraries(${target_name} PRIVATE gd_core gd_drivers vulkan)
 target_link_libraries(${target_name} PRIVATE
 	Winmm.lib 
 	Dwrite.lib 
@@ -58,4 +68,6 @@ target_link_libraries(${target_name} PRIVATE
 	dinput8.lib 
 	Dbghelp.lib
 	dxguid.lib
+	hid.lib
+	Shcore.lib
 )
