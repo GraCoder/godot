@@ -43,13 +43,17 @@ if(with_gles3)
 endif()
 
 if(with_volk)
-	target_compile_definitions(${target_name} PRIVATE USE_VOLK)
+	target_compile_definitions(${target_name} PUBLIC USE_VOLK)
 endif()
 
 target_include_directories(${target_name} PRIVATE ${thirdin_dir}/glad)
-target_include_directories(${target_name} PRIVATE ${thirdin_dir}/libpng)
 target_include_directories(${target_name} PRIVATE ${thirdin_dir}/vulkan)
+target_include_directories(${target_name} PUBLIC ${thirdin_dir}/volk)
+target_include_directories(${target_name} PUBLIC ${thirdin_dir}/vulkan/include)
 
-target_link_libraries(${target_name} PRIVATE freetype vulkan)
+#target_include_directories(${target_name} PRIVATE ${thirdin_dir}/libpng)
+target_include_directories(${target_name} PRIVATE ${third_inc})
+
+target_link_libraries(${target_name} PRIVATE freetype vulkan libpng16)
 
 target_link_libraries(${target_name} PRIVATE Shlwapi.lib Ws2_32.lib Iphlpapi.lib opengl32.lib ntdll.lib)

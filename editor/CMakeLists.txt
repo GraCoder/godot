@@ -16,3 +16,4 @@ add_library(${target_name} ${target_source} ${target_gen_source})
 target_include_directories(${target_name} PRIVATE ${target_dir})
 
 target_include_directories(${target_name} PRIVATE ${thirdin_dir}/zlib)
+target_include_directories(${target_name} PRIVATE ${thirdin_dir}/clipper2/include)

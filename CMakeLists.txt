@@ -51,6 +51,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 if(MSVC)
 	add_definitions(-DWINDOWS_ENABLED "/wd4244")
+	add_compile_options("/Zc:__cplusplus")
 endif()
 
 option(build_editor "" true)
@@ -95,7 +96,7 @@ include_directories(${CMAKE_SOURCE_DIR}/gen)
 include_directories(${CMAKE_SOURCE_DIR}/platform/${CMAKE_HOST_SYSTEM_NAME})
 
 set(third_dir CACHE PATH FORCE)
-if(EXISTS third_dir)
+if(EXISTS ${third_dir})
 	set(third_inc ${third_dir}/include)
 	set(third_lib ${third_dir}/lib)
 endif()

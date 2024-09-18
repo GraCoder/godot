@@ -30,6 +30,7 @@ set(src_dirs
 	${src_dir}/rendering/renderer_rd/forward_clustered
 	${src_dir}/rendering/renderer_rd/storage_rd
 	${src_dir}/rendering/storage
+	${src_dir}/display
 )
 
 option(build_mobile_render "" true)
@@ -56,3 +57,6 @@ add_library(${target_name} ${target_src})
 
 target_include_directories(${target_name} PRIVATE ${CMAKE_SOURCE_DIR})
 target_include_directories(${target_name} PUBLIC ${ZLIB_INCLUDE_DIR})
+
+
+target_link_libraries(${target_name} PRIVATE gd_drivers)

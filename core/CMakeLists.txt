@@ -20,5 +20,6 @@ target_compile_definitions(${target_name} PUBLIC NOMINMAX)
 target_include_directories(${target_name} PUBLIC ${thirdin_dir})
 target_include_directories(${target_name} PUBLIC ${thirdin_dir}/zlib)
 target_include_directories(${target_name} PRIVATE ${thirdin_dir}/mbedtls/include)
+target_include_directories(${target_name} PRIVATE ${thirdin_dir}/clipper2/include)
 
 target_link_directories(${target_name} PRIVATE ${third_lib})

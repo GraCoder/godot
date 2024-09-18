@@ -6,17 +6,23 @@ set(target_gen_dir ${gen_dir}/platform)
 
 set( target_source
     windows/godot_windows.cpp
-    windows/crash_handler_windows.cpp
     windows/os_windows.cpp
     windows/display_server_windows.cpp
     windows/key_mapping_windows.cpp
     windows/joypad_windows.cpp
     windows/tts_windows.cpp
     windows/windows_terminal_logger.cpp
-    windows/vulkan_context_win.cpp
     windows/gl_manager_windows_native.cpp
     windows/gl_manager_windows_angle.cpp
     windows/wgl_detect_version.cpp
+		windows/native_menu_windows.cpp
+
+		windows/rendering_context_driver_vulkan_windows.cpp
+
+		windows/crash_handler_windows_seh.cpp
+		#windows/crash_handler_windows_signal.cpp
+
+		windows/windows_utils.cpp
 )
 
 file(GLOB_RECURSE target_gen_source ${target_gen_dir}/*.cpp)

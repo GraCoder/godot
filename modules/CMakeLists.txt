@@ -42,6 +42,8 @@ source_group(TREE ${target_gen_dir} FILES ${target_gen_source})
 
 add_library(${target_name} ${target_source} ${target_gen_source})
 
+target_compile_definitions(${target_name} PRIVATE GODOT_MODULE)
+
 target_include_directories(${target_name} PUBLIC ${target_dir}) 
 
 target_include_directories(${target_name} PUBLIC ${target_gen_dir}/gdscript)

@@ -24,6 +24,8 @@ add_library(${target_name} SHARED ${target_src})
 
 set_target_properties(${target_name} PROPERTIES FOLDER "third")
 
+target_compile_definitions(${target_name} PRIVATE MBEDTLS_CONFIG_FILE="godot_core_mbedtls_config.h")
+
 target_include_directories(${target_name} PRIVATE ${target_dir})
 target_include_directories(${target_name} PRIVATE ${target_dir}/include)
 

@@ -18,7 +18,7 @@
 #include "basisu_etc.h"
 #include "../transcoder/basisu_transcoder.h"
 #include "basisu_bc7enc.h"
-#include "jpgd.h"
+#include "../../jpeg-compressor/jpgd.h"
 #include "pvpngreader.h"
 #include "basisu_opencl.h"
 #include <vector>
